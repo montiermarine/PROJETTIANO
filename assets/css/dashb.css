@@ -1,0 +1,21 @@
+.dashboard{
+    background-color: #0077b6;
+    color: aliceblue;
+    height: 100%;
+
+}
+.titleDashboard{
+    font-size: 3rem;
+    color: aliceblue;
+}
+span {
+    color: aliceblue;
+}
+i {
+    color: aliceblue;
+    font-size: 2rem;
+}
+.sidebar-heading {
+    text-decoration: underline;
+    font-weight: bolder;
+}

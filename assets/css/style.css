@@ -1,0 +1,36 @@
+.index {
+    background-image:url("../img/tag.Jpg") ;
+    background-repeat: no-repeat;
+    background-size: contain;
+    
+}
+#TianoCover {
+   height: 90vh;
+}
+h1 {
+    color: #90e0ef;
+    font-family: 'Julius Sans One', sans-serif;
+}
+#titletiano {
+    color: #caf0f8;
+}
+nav {
+    background-color: #0077b6;
+    
+}
+.bouton {
+    background-color: #0077b6;
+    color: aliceblue;
+}
+h2 {
+font-family:'Julius Sans One', sans-serif ;
+}
+p {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+}
+#undrawImage {
+    width: 30%;
+}
+
+

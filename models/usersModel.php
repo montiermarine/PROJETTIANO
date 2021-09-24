@@ -98,8 +98,19 @@ class users extends database
     }
 /**getUsersList permet d'afficher la liste des utilisateurs */
     public function getUsersList() {
-        $query = 'SELECT firstname, lastname, username, address, mail, phoneNumber
+        $query = 'SELECT id, firstname, lastname, username, address, mail, phoneNumber
         FROM fyS_users';
+        $queryExecute = $this->db->query($query);
+        $queryResult = $queryExecute->fetchAll(PDO::FETCH_OBJ);
+        return $queryResult;
+    }
+
+    /**getLastUsers permet d'afficher les derniers utilisateurs */
+    public function getLastUsers() {
+        $query = 'SELECT  id, firstname, lastname, mail
+        FROM fyS_users
+        ORDER BY id DESC
+        LIMIT 5';
         $queryExecute = $this->db->query($query);
         $queryResult = $queryExecute->fetchAll(PDO::FETCH_OBJ);
         return $queryResult;
@@ -107,8 +118,48 @@ class users extends database
 
     /** getUserProfile permet voir le Profil de l'utilisateur */
     public function getUserProfile() {
-    $query = 'SELECT id,firstname, lastname, username, address, mail, phoneNumber, password
+    $query = 'SELECT id, firstname, lastname, username, address, mail, phoneNumber
     FROM fyS_users
     WHERE id = :id';
+    $queryExecute = $this->db->prepare($query);
+    $queryExecute->bindValue(':id', $this->id, PDO::PARAM_INT);
+    $queryExecute->execute();
+    return $queryExecute->fetch(PDO::FETCH_OBJ);
     }
+/** updateProfile() permet de modifier le profil utilisateur */
+    public function updateProfile() {
+        $query = 'UPDATE fyS_users 
+        SET lastname=:lastname, firstname=:firstname, username=:username, address=:address, phoneNumber=:phoneNumber, mail=:mail
+        WHERE id=:id'; 
+        $queryExecute = $this->db->prepare($query);
+        $queryExecute->bindValue(':lastname', $this->lastname, PDO::PARAM_STR);
+        $queryExecute->bindValue(':firstname', $this->firstname, PDO::PARAM_STR);
+        $queryExecute->bindValue(':username', $this->username, PDO::PARAM_STR);
+        $queryExecute->bindValue(':address', $this->address, PDO::PARAM_STR);
+        $queryExecute->bindValue(':phoneNumber', $this->phoneNumber, PDO::PARAM_STR);
+        $queryExecute->bindValue(':mail', $this->mail, PDO::PARAM_STR);
+        $queryExecute->bindValue(':id', $this->id, PDO::PARAM_INT);
+        return $queryExecute->execute();
+    }
+
+/** updatePassword() permet de modifier le mot de passe */
+public function updatePassword() {
+    $query = 'UPDATE fyS_users
+    SET password=:password
+    WHERE id=:id';
+    $queryExecute = $this->db->prepare($query);
+    $queryExecute->bindValue(':password', $this->password, PDO::PARAM_STR);
+    $queryExecute->bindValue(':id', $this->id, PDO::PARAM_INT);
+    return $queryExecute->execute();
+
+}
+
+/** deleteUser() permet de supprimer un utilisateur*/
+public function deleteUser() {
+    $query = 'DELETE FROM fyS_users
+    WHERE id = :id';
+    $queryExecute = $this->db->prepare($query);
+    $queryExecute->bindValue(':id', $this->id, PDO::PARAM_INT);
+    return $queryExecute->execute();
+}
 }

@@ -4,7 +4,7 @@
         <div class="container py-5">
           <div class="row py-4">
             <div class="col-lg-4 col-md-6 mb-4 mb-lg-0"><img src="assets/img/logo.jpg" alt="" width="180" class="mb-3">
-              <p class="font-italic text-muted">Nous vous remercions de l'intêret apporté à l'Association TIANO</p>
+              <p class="font-italic">Nous vous remercions de l'intêret apporté à l'Association TIANO</p>
               <ul class="list-inline mt-4">
                 <li class="list-inline-item text-secondary"><a href="https://fr-fr.facebook.com/associationtiano/" target="_blank" title="facebook"><i class="bi bi-facebook"></i></a></li>
                 <li class="list-inline-item text-secondary"><a href="#" target="_blank" title="instagram"><i class="bi bi-instagram"></i></a></li>
@@ -46,6 +46,12 @@
   </section>
   <script src="assets/js/bootstrap.bundle.min.js"></script>
   <script src="assets/js/script.js"></script>
+  <?php if($_SERVER['PHP_SELF'] == '/Projet TIANO/userProfile.php') { ?>
+  <script src="assets/js/deleteModal.js"></script>
+ <?php } ?>
+ 
+  <script src="assets/js/deleteArticle.js"></script>
+ 
 </body>
 
 </html>

@@ -1,5 +1,10 @@
 <?php
 session_start();
+require_once 'models/database.php';
+require_once 'models/usersModel.php';
+require_once 'models/eventsModel.php';
+require_once 'models/commentsModel.php';
+require_once 'controllers/dashboardcontroller.php';
 require_once 'includes/header.php';
 ?>
 <!-- MENU DASHBOARD-->
@@ -10,7 +15,7 @@ require_once 'includes/header.php';
                     <hr class="sidebar-divider my-0">
                     <li class="nav-item text-center">
                         <a class="nav-link" href="dashboard.php">
-                            <i class="bi bi-speedometer titleDashboard"></i>
+                            <i class="color bi bi-speedometer titleDashboard"></i>
                             <span class="titleDashboard">DASHBOARD</span></a>
                     </li>
                     <hr class="sidebar-divider">
@@ -18,20 +23,20 @@ require_once 'includes/header.php';
                         GESTION
                     </div>
                     <li class="nav-item">
-                        <a class="nav-link collapsed" href="usersList.php" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                            <i class="bi bi-person-badge"></i>
+                        <a class="nav-link collapsed" href="usersList.php" data-toggle="collapse"> 
+                            <i class=" color bi bi-person-badge"></i>
                             <span>ADHÉRENTS</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link collapsed" href="contributions.php" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-                            <i class="bi bi-cash-coin text-center"></i>
+                        <a class="nav-link collapsed" href="contributions.php" data-toggle="collapse">
+                            <i class="color bi bi-cash-coin text-center"></i>
                             <span>COTISATIONS</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link collapsed" href="donations.php" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-                            <i class="bi bi-cash-coin text-center"></i>
+                        <a class="nav-link collapsed" href="donations.php" data-toggle="collapse">
+                            <i class="color bi bi-cash-coin text-center"></i>
                             <span>DONS</span>
                         </a>
                     </li>
@@ -40,24 +45,26 @@ require_once 'includes/header.php';
                         ACTUALITÉS
                     </div>
                     <li class="nav-item">
-                        <a class="nav-link collapsed" href="articles.php" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-                            <i class="bi bi-blockquote-left"></i>
+                        <a class="nav-link collapsed" href="articles.php" data-toggle="collapse">
+                            <i class="color bi bi-blockquote-left"></i>
                             <span>BLOG</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="comments.php">
-                            <i class="bi bi-card-checklist"></i>
+                            <i class="color bi bi-card-checklist"></i>
                             <span>COMMENTAIRES</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="tables.html">
-                            <i class="bi bi-calendar3"></i>
+                        <a class="nav-link" href="calendrier.php">
+                            <i class="color bi bi-calendar3"></i>
                             <span>CALENDRIER</span></a>
                     </li>
                     <hr class="sidebar-divider d-none d-md-block">
                 </ul>
             </div>
+    
+    
 
 
 
@@ -66,51 +73,28 @@ require_once 'includes/header.php';
                 <div class="row">
                     <div class="col-6">
                         <h2>Adhérents</h2>
-                        <table class="table table-responsive table-hover border border-secondary">
+                        <table class="table table-responsive bg-danger table-hover border border-danger">
                             <thead>
                                 <tr>
                                     <th scope="col">Nom</th>
                                     <th scope="col">Prénom</th>
-                                    <th scope="col">Date</th>
+                                    <th scope="col">Mail</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="table-light">
-                                    <td>MICHAUD</td>
-                                    <td>Cendrillon</td>
-                                    <td>28/05/21</td>
-                                </tr>
+                            <?php foreach ($usersLast as $usersDetails) { ?>
                                 <tr class="table-danger">
-                                    <td>BARON</td>
-                                    <td>Denise</td>
-                                    <td>28/05/21</td>
+                                    <td><?= $usersDetails->firstname ?></td>
+                                    <td><?= $usersDetails->lastname ?></td>
+                                    <td><?= $usersDetails->mail ?></td>
                                 </tr>
-                                <tr class="table-light">
-                                    <td>TABOR</td>
-                                    <td>Chandonnet</td>
-                                    <td>28/05/21</td>
-                                </tr>
-                                <tr class="table-danger">
-                                    <td>DESNOYER</td>
-                                    <td>Martin</td>
-                                    <td>28/05/21</td>
-                                </tr>
-                                <tr class="table-light">
-                                    <td>MOREL</td>
-                                    <td>Maurice</td>
-                                    <td>28/05/21</td>
-                                </tr>
-                                <tr class="table-danger">
-                                    <td>BAMBARA</td>
-                                    <td>Abu</td>
-                                    <td>28/05/21</td>
-                                </tr>
+                                <?php } ?>     
                             </tbody>
                         </table>
                     </div>
                     <div class="col-6">
                         <h2>Cotisations</h2>
-                        <table class="table table-responsive table-hover border border-secondary">
+                        <table class="table table-responsive bg-warning table-hover border border-warning">
                             <thead>
                                 <tr>
                                     <th scope="col">Nom</th>
@@ -122,46 +106,11 @@ require_once 'includes/header.php';
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="table-light">
+                                <tr class="table-warning">
                                     <td>MICHAUD</td>
                                     <td>Cendrillon</td>
                                     <td>35</td>
                                     <td>ESP</td>
-                                    <td>28/05/21</td>
-                                </tr>
-                                <tr class="table-success">
-                                    <td>BARON</td>
-                                    <td>Denise</td>
-                                    <td>35</td>
-                                    <td>CB</td>
-                                    <td>28/05/21</td>
-                                </tr>
-                                <tr class="table-light">
-                                    <td>TABOR</td>
-                                    <td>Chandonnet</td>
-                                    <td>35</td>
-                                    <td>CHQ</td>
-                                    <td>28/05/21</td>
-                                </tr>
-                                <tr class="table-success">
-                                    <td>DESNOYER</td>
-                                    <td>Martin</td>
-                                    <td>35</td>
-                                    <td>CB</td>
-                                    <td>28/05/21</td>
-                                </tr>
-                                <tr class="table-light">
-                                    <td>MOREL</td>
-                                    <td>Maurice</td>
-                                    <td>35</td>
-                                    <td>ESP</td>
-                                    <td>28/05/21</td>
-                                </tr>
-                                <tr class="table-success">
-                                    <td>BAMBARA</td>
-                                    <td>Abu</td>
-                                    <td>35</td>
-                                    <td>CHQ</td>
                                     <td>28/05/21</td>
                                 </tr>
                             </tbody>
@@ -169,51 +118,22 @@ require_once 'includes/header.php';
                     </div>
                     <div class="col-5">
                         <h2>Dons</h2>
-                        <table class="table table-responsive table-hover border border-secondary">
+                        <table class="table table-responsive bg-primary table-hover border border-primary">
                             <thead>
                                 <tr>
                                     <th scope="col">Nom</th>
                                     <th scope="col">Réglement</th>
                                     <th scope="col">Type de Réglement</th>
                                     <th scope="col">Date</th>
+                                    <th scope="col"><a href=""></a></th>
 
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="table-light">
+                                <tr class="table-primary">
                                     <td>MICHAUD</td>
                                     <td>20</td>
                                     <td>ESP</td>
-                                    <td>28/05/21</td>
-                                </tr>
-                                <tr class="table-primary">
-                                    <td>BARON</td>
-                                    <td>3200</td>
-                                    <td>CB</td>
-                                    <td>28/05/21</td>
-                                </tr>
-                                <tr class="table-light">
-                                    <td>TABOR</td>
-                                    <td>35</td>
-                                    <td>CHQ</td>
-                                    <td>28/05/21</td>
-                                </tr>
-                                <tr class="table-primary">
-                                    <td>DESNOYER</td>
-                                    <td>450</td>
-                                    <td>CB</td>
-                                    <td>28/05/21</td>
-                                </tr>
-                                <tr class="table-light">
-                                    <td>MOREL</td>
-                                    <td>65</td>
-                                    <td>ESP</td>
-                                    <td>28/05/21</td>
-                                </tr>
-                                <tr class="table-primary">
-                                    <td>BAMBARA</td>
-                                    <td>100</td>
-                                    <td>CHQ</td>
                                     <td>28/05/21</td>
                                 </tr>
                             </tbody>
@@ -229,7 +149,7 @@ require_once 'includes/header.php';
                     
                         <div class="col-6">
                             <h2>Blog</h2>
-                            <table class="table table-responsive table-hover border border-secondary">
+                            <table class="table table-responsive bg-info table-hover border border-info">
                                 <thead>
                                     <tr>
                                         <th scope="col">Titre</th>
@@ -240,30 +160,20 @@ require_once 'includes/header.php';
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="table-light">
-                                        <td>Des Vacances adaptés</td>
-                                        <td>20/06/2021</td>
-                                        <td><button><i class="bi bi-pen text-success"></i></button></td>
-                                        <td><button><i class="bi bi-trash text-danger"></i></button></td>
+                                <?php foreach ($eventsLast as $eventsDetails) { ?>
+                                    <tr class="table-info">
+                                        <td><?=$eventsDetails->title ?></td>
+                                        <td><?=$eventsDetails->startDate ?></td>
+                                        <td><a href="updateEvents.php?=id<?=$eventsDetails->id?>"><i class="bi bi-pen btn btn-warning"></i></a></td>
+                                        <td><a href="articles.php"><i class="bi bi-trash-fill btn btn-danger"></i></a></td>
                                     </tr>
-                                    <tr class="table">
-                                        <td>Citizen Day l'Oréal</td>
-                                        <td>20/06/2021</td>
-                                        <td><button><i class="bi bi-pen text-success"></i></button></td>
-                                        <td><button><i class="bi bi-trash text-danger"></i></button></td>
-                                    </tr>
-                                    <tr class="table-light">
-                                        <td>Cross Notre-Dame de Noyon</td>
-                                        <td>20/06/2021</td>
-                                        <td><button><i class="bi bi-pen text-success"></i></button></td>
-                                        <td><button><i class="bi bi-trash text-danger"></i></button></td>
-                                    </tr>
+                                    <?php } ?>
                                 </tbody>
                             </table>
                         </div>
                         <div class="col-6">
                             <h2>Commentaires</h2>
-                            <table class="table table-responsive table-hover border border-secondary">
+                            <table class="table bg-success table-responsive table-hover border border-success">
                                 <thead>
                                     <tr>
                                         <th scope="col">Pseudo</th>
@@ -275,13 +185,15 @@ require_once 'includes/header.php';
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="table-light">
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td><button><i class="bi bi-pen text-success"></i></button></td>
-                                        <td><button><i class="bi bi-trash text-danger"></i></button></td>
+                                <?php foreach ($commentsLast as $commentsDetails) { ?>
+                                    <tr class="table-success">
+                                        <td><?=$commentsDetails->username ?></td>
+                                        <td><?=$commentsDetails->commentText ?></td>
+                                        <td><?=$commentsDetails->date ?></td>
+                                        <td><a href="updateComments.php?=id<?=$commentsDetails->id?>"><i class="bi bi-pen btn btn-warning"></i></a></td>
+                                        <td><a href="comments.php"><i class="bi bi-trash-fill btn btn-danger"></i></a></td>
                                     </tr>
+                                    <?php } ?>
                                 </tbody>
                             </table>
                         </div>
@@ -289,13 +201,6 @@ require_once 'includes/header.php';
                 </div>
             </div>
         </div>
-    </div>
 
-
-
-
-
-
-</body>
-
-</html>
+        </body>
+        </html>

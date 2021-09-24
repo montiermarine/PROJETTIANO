@@ -22,3 +22,15 @@ define('INVALID_PHONENUMBER', 'Le numéro de téléphone est incorrect.');
 define('EMPTY_PASSWORD', 'Le mot de passe est obligatoire.');
 define('INVALID_PASSWORD', 'Les mots de passe ne sont pas identiques.');
 
+define('EMPTY_TITLE', 'Le titre est obligatoire.');
+define('INVALID_TITLE', 'Le titre est incorrect.');
+
+define('EMPTY_SDATE', 'La date de parution est obligatoire.');
+define('INVALID_SDATE', 'La date de parution est incorrect.');
+
+define('EMPTY_EDATE', 'La date de l\'événement est obligatoire.');
+define('INVALID_EDATE', 'La date de l\'événement est incorrect.');
+
+define('EMPTY_PHOTO', 'La photo est obligatoire.');
+define('INVALID_PHOTO', 'La photo est inexistante.');
+

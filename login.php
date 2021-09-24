@@ -31,7 +31,7 @@ require_once 'includes/header.php';
                     <input type="password" name="password" class="form-control <?= !isset($formErrors['password']) ?: 'is-invalid' ?>" id="password" value="<?= @$_POST['password'] ?>" />
                     <small class="invalid-feedback"> <?= @$formErrors['password'] ?></small>
                 </div>
-                <input type="submit" class="btn btn-success" value="Envoyer" />
+                <input type="submit" class="btn btn-success" value="Envoyer"/>
             </form>
         </div>
         <div class="col-6 d-flex align-items-center">

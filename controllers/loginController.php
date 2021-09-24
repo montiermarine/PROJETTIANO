@@ -44,7 +44,7 @@ if (count($_POST) > 0) {
             exit;
 
         }else{
-            header('location:index.php');
+            header('location:userProfile.php');
             exit;
         }
 

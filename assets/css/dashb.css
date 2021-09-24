@@ -11,9 +11,9 @@
 span {
     color: aliceblue;
 }
-i {
-    color: aliceblue;
-    font-size: 2rem;
+#color {
+    color: white;
+    
 }
 .sidebar-heading {
     text-decoration: underline;
